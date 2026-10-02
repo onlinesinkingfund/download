@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full dark">
+<html lang="en" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online Sinking Fund App</title>
     
-   
+    <!-- Tailwind CSS (Development CDN) -->
     <script src="https://cdn.tailwindcss.com/3.4.3"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
-    
-    <script src="https://unpkg.com/lucide@0.292.0"></script>
+    <!-- Lucide Icons (Deferred to prevent render blocking) -->
+    <script src="https://unpkg.com/lucide@0.292.0" defer></script>
 
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     
@@ -89,15 +89,9 @@
 
             <div class="flex items-center gap-2">
                 <!-- Theme Toggle -->
-                <button id="themeToggleBtn" class="p-2 rounded-lg text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                <button id="themeToggleBtn" aria-label="Toggle Theme" class="p-2 rounded-lg text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
                     <i data-lucide="moon" id="themeMoon" class="w-5 h-5 hidden dark:block"></i>
                     <i data-lucide="sun" id="themeSun" class="w-5 h-5 block dark:hidden"></i>
-                </button>
-                
-                <!-- Admin Config Trigger -->
-                <button id="openConfigBtn" class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 transition">
-                    <i data-lucide="settings" class="w-4 h-4"></i>
-                   <!-- <span class="hidden sm:inline">Configure URL</span> -->
                 </button>
             </div>
         </div>
@@ -125,10 +119,10 @@
                         <div class="space-y-1">
                             <div class="flex items-center gap-2 flex-wrap">
                                 <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-brand-500/10 text-brand-600 dark:text-brand-400 border border-brand-500/20">Android App</span>
-                                <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400" id="badgeVersion">v2.4.0</span>
+                                <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400" id="badgeVersion">v1.26.6</span>
                             </div>
-                            <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight" id="heroAppName">Custom Android Application</h2>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 font-mono" id="heroPackageName">com.example.myapp</p>
+                            <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight" id="heroAppName">Online Sinking Fund</h2>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 font-mono" id="heroPackageName">Author: Dexter Abejaron</p>
                         </div>
                     </div>
 
@@ -140,7 +134,7 @@
                     <div class="grid grid-cols-3 gap-2 sm:gap-4 py-3 px-4 rounded-xl bg-slate-100/80 dark:bg-slate-900/60 border border-slate-200/50 dark:border-slate-800 text-center text-xs">
                         <div>
                             <span class="block text-slate-400 text-[10px] uppercase font-bold tracking-wider">File Size</span>
-                            <span class="font-bold text-slate-700 dark:text-slate-200 text-sm" id="metaFileSize">42.8 MB</span>
+                            <span class="font-bold text-slate-700 dark:text-slate-200 text-sm" id="metaFileSize">4.7 MB</span>
                         </div>
                         <div class="border-x border-slate-200 dark:border-slate-800">
                             <span class="block text-slate-400 text-[10px] uppercase font-bold tracking-wider">Requires OS</span>
@@ -297,6 +291,7 @@
                     <h4 class="font-semibold text-sm text-slate-800 dark:text-slate-200">Why can't I install the APK?</h4>
                     <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
                         Make sure your device is compatible and that you have enough storage space. Also check that the APK downloaded completely and that your Android settings allow installation from the source you're using.
+                    </p>
                 </div>
             </div>
         </section>
@@ -305,7 +300,7 @@
     <!-- Modal: Download Trigger & Checklist -->
     <div id="downloadModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm hidden transition-opacity">
         <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl max-w-md w-full p-6 space-y-6 shadow-2xl relative animate-in fade-in zoom-in duration-200">
-            <button id="closeDownloadModal" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 rounded-lg">
+            <button id="closeDownloadModal" aria-label="Close Download Modal" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 rounded-lg">
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
 
@@ -315,7 +310,7 @@
                 </div>
                 <h3 class="text-xl font-bold">Download Starting...</h3>
                 <p class="text-xs text-slate-500 dark:text-slate-400">
-                    If your download doesn't begin automatically, <a id="directLinkFallback" href="#" class="text-brand-600 dark:text-brand-400 font-bold underline">click here to retry</a>.
+                    If your download doesn't begin automatically, <a id="directLinkFallback" href="#" class="text-brand-600 dark:text-brand-400 font-bold underline" download>click here to retry</a>.
                 </p>
             </div>
 
@@ -344,57 +339,6 @@
         </div>
     </div>
 
-    <!-- Modal: Admin URL & Metadata Configurer -->
-    <div id="configModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm hidden">
-        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl max-w-lg w-full p-6 space-y-6 shadow-2xl relative">
-            <button id="closeConfigModal" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 rounded-lg">
-                <i data-lucide="x" class="w-5 h-5"></i>
-            </button>
-
-            <div class="space-y-1">
-                <h3 class="text-lg font-bold flex items-center gap-2">
-                    <i data-lucide="sliders" class="w-5 h-5 text-brand-500"></i>
-                    Configure APK Download URL
-                </h3>
-                <p class="text-xs text-slate-500 dark:text-slate-400">Update the link and metadata for your custom Android app.</p>
-            </div>
-
-            <form id="configForm" class="space-y-4 text-xs">
-                <div>
-                    <label class="block font-semibold mb-1 text-slate-700 dark:text-slate-300">App Name</label>
-                    <input type="text" id="cfgAppName" class="w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-brand-500 outline-none" value="TEST">
-                </div>
-
-                <div>
-                    <label class="block font-semibold mb-1 text-slate-700 dark:text-slate-300">Package Name</label>
-                    <input type="text" id="cfgPackage" class="w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-brand-500 outline-none" value="com.example.myapp">
-                </div>
-
-                <div>
-                    <label class="block font-semibold mb-1 text-slate-700 dark:text-slate-300">APK Direct Download Link</label>
-                    <input type="url" id="cfgApkUrl" class="w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-brand-500 outline-none font-mono" placeholder="https://example.com/app.apk" value="./Online-Sinking-Fund.apk">
-                    <p class="text-[11px] text-slate-400 mt-1">Supports direct URL links or converted Google Drive direct download links.</p>
-                </div>
-
-                <div class="grid grid-cols-2 gap-3">
-                    <div>
-                        <label class="block font-semibold mb-1 text-slate-700 dark:text-slate-300">Version</label>
-                        <input type="text" id="cfgVersion" class="w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-brand-500 outline-none" value="v1.0.0">
-                    </div>
-                    <div>
-                        <label class="block font-semibold mb-1 text-slate-700 dark:text-slate-300">File Size</label>
-                        <input type="text" id="cfgSize" class="w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-brand-500 outline-none" value="28.4 MB">
-                    </div>
-                </div>
-
-                <div class="pt-2 flex justify-end gap-2">
-                    <button type="button" id="cancelConfigBtn" class="px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 font-semibold hover:bg-slate-300 dark:hover:bg-slate-700">Cancel</button>
-                    <button type="submit" class="px-4 py-2 rounded-xl bg-brand-500 text-slate-950 font-bold hover:bg-brand-600 transition">Save Changes</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
     <!-- Footer -->
     <footer class="mt-auto border-t border-slate-200 dark:border-slate-800 py-6 bg-white dark:bg-slate-950 text-center text-xs text-slate-500 dark:text-slate-400">
         <div class="max-w-5xl mx-auto px-4 space-y-1">
@@ -404,86 +348,71 @@
     </footer>
 
     <script>
-        // State variables
-        let appData = {
+        // Data configuration - Update these values before pushing to GitHub
+        const appData = {
             name: "Online Sinking Fund",
             package: "Author: Dexter Abejaron",
             version: "v1.26.6",
             size: "4.7 MB",
             minOS: "Android 8.0+",
-            apkUrl: "./Online-Sinking-Fund.apk" // File
+            apkUrl: "./Online-Sinking-Fund.apk"
         };
 
-        // DOM elements
+        // DOM Elements
         const themeToggleBtn = document.getElementById('themeToggleBtn');
-        const openConfigBtn = document.getElementById('openConfigBtn');
-        const closeConfigModal = document.getElementById('closeConfigModal');
-        const cancelConfigBtn = document.getElementById('cancelConfigBtn');
-        const configModal = document.getElementById('configModal');
-        const configForm = document.getElementById('configForm');
-
+        const htmlElement = document.documentElement;
+        
         const downloadBtn = document.getElementById('downloadBtn');
         const downloadModal = document.getElementById('downloadModal');
         const closeDownloadModal = document.getElementById('closeDownloadModal');
         const confirmCloseModalBtn = document.getElementById('confirmCloseModalBtn');
         const directLinkFallback = document.getElementById('directLinkFallback');
 
-        // Theme management
+        // Theme Management with LocalStorage and System Preference
         function initTheme() {
-               // if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-               // document.documentElement.classList.add('dark');
-                  //  } else {
-                       // document.documentElement.classList.remove('dark');
-                   // }
+            // Check saved preference or fallback to system preference
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                htmlElement.classList.add('dark');
+            } else {
+                htmlElement.classList.remove('dark');
+            }
         }
 
         themeToggleBtn.addEventListener('click', () => {
-            document.documentElement.classList.toggle('dark');
+            htmlElement.classList.toggle('dark');
+            if (htmlElement.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
         });
 
-        // Config Modal logic
-        openConfigBtn.addEventListener('click', () => {
-            document.getElementById('cfgAppName').value = appData.name;
-            document.getElementById('cfgPackage').value = appData.package;
-            document.getElementById('cfgApkUrl').value = appData.apkUrl;
-            document.getElementById('cfgVersion').value = appData.version;
-            document.getElementById('cfgSize').value = appData.size;
-            configModal.classList.remove('hidden');
+        // Listen for OS theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            if (!localStorage.getItem('theme')) {
+                if (e.matches) htmlElement.classList.add('dark');
+                else htmlElement.classList.remove('dark');
+            }
         });
 
-        const hideConfigModal = () => configModal.classList.add('hidden');
-        closeConfigModal.addEventListener('click', hideConfigModal);
-        cancelConfigBtn.addEventListener('click', hideConfigModal);
-
-        configForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            appData.name = document.getElementById('cfgAppName').value.trim() || "My Custom App";
-            appData.package = document.getElementById('cfgPackage').value.trim() || "com.example.myapp";
-            appData.apkUrl = document.getElementById('cfgApkUrl').value.trim();
-            appData.version = document.getElementById('cfgVersion').value.trim() || "v1.0.0";
-            appData.size = document.getElementById('cfgSize').value.trim() || "0 MB";
-
-            updateUI();
-            hideConfigModal();
-        });
-
-        // Update UI Text
+        // Setup UI with Hardcoded Data
         function updateUI() {
             document.getElementById('headerAppName').innerText = appData.name;
             document.getElementById('heroAppName').innerText = appData.name;
             document.getElementById('heroPackageName').innerText = appData.package;
             document.getElementById('badgeVersion').innerText = appData.version;
             document.getElementById('metaFileSize').innerText = appData.size;
+            
             directLinkFallback.href = appData.apkUrl;
+            // Add download attribute so the fallback link forces download rather than navigation
+            directLinkFallback.setAttribute('download', `${appData.name.toLowerCase().replace(/\s+/g, '_')}.apk`);
         }
 
         // Trigger Download Flow
         downloadBtn.addEventListener('click', () => {
-            // Show installation instructions modal
             downloadModal.classList.remove('hidden');
-            directLinkFallback.href = appData.apkUrl;
-
-            // Trigger real browser download action
+            
+            // Programmatic download
             const a = document.createElement('a');
             a.href = appData.apkUrl;
             a.download = `${appData.name.toLowerCase().replace(/\s+/g, '_')}.apk`;
@@ -496,12 +425,22 @@
         closeDownloadModal.addEventListener('click', hideDownloadModal);
         confirmCloseModalBtn.addEventListener('click', hideDownloadModal);
 
-        // Initialize Lucide Icons and app view
+        // Initialize App
         window.addEventListener('DOMContentLoaded', () => {
             initTheme();
             updateUI();
+            
+            // Wait for Lucide script to load asynchronously
             if (window.lucide) {
                 lucide.createIcons();
+            } else {
+                // Polling fallback if script is deferred
+                const iconCheck = setInterval(() => {
+                    if (window.lucide) {
+                        lucide.createIcons();
+                        clearInterval(iconCheck);
+                    }
+                }, 100);
             }
         });
     </script>
